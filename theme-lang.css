@@ -1,0 +1,182 @@
+/* ═══════════════════════════════════════════════════════════
+   SETTINGS WIDGET  (thème + langue)
+   Ce bloc s'ajoute à styles.css — aucune classe existante n'est modifiée
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Conteneur flottant en bas à droite ── */
+#settings-widget {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  font-family: var(--sans);
+}
+
+/* Bouton principal (engrenage) */
+#settings-toggle {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--grad);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 24px rgba(37,99,235,.35);
+  transition: transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s;
+}
+#settings-toggle:hover { transform: rotate(45deg) scale(1.08); box-shadow: 0 10px 32px rgba(37,99,235,.5); }
+#settings-toggle svg { width: 20px; height: 20px; stroke: #fff; }
+
+/* Panneau ─ ouvert/fermé */
+#settings-panel {
+  background: rgba(10, 19, 36, 0.95);
+  border: 1px solid var(--border2);
+  border-radius: 18px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  backdrop-filter: blur(24px);
+  width: 210px;
+  opacity: 0;
+  transform: translateY(12px) scale(0.96);
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease;
+  box-shadow: 0 20px 60px rgba(0,0,0,.55);
+}
+#settings-panel.open {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+/* Titre de section dans le panneau */
+.sw-section-label {
+  font-family: var(--mono);
+  font-size: .55rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted2);
+  margin-bottom: 6px;
+}
+
+/* Groupe de boutons (thème / langue) */
+.sw-group {
+  display: flex;
+  gap: 6px;
+}
+
+.sw-btn {
+  flex: 1;
+  padding: 7px 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  font-family: var(--sans);
+  font-size: .7rem;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color .2s, background .2s, color .2s;
+  text-align: center;
+}
+.sw-btn:hover { border-color: rgba(59,130,246,.45); color: var(--text); background: var(--blue-d); }
+.sw-btn.active {
+  border-color: var(--blue2);
+  color: #fff;
+  background: var(--blue);
+  box-shadow: 0 3px 12px rgba(37,99,235,.35);
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 768px) {
+  #settings-widget { bottom: 18px; right: 16px; }
+  #settings-panel  { width: 190px; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   THÈME LIGHT — overrides des variables
+   ═══════════════════════════════════════════════════════════ */
+[data-theme="light"] {
+  --bg:        #f0f4fb;
+  --bg1:       #ffffff;
+  --bg2:       #e8eef7;
+  --bg3:       #dbe5f3;
+
+  --blue:      #1d4ed8;
+  --blue2:     #2563eb;
+  --blue3:     #3b82f6;
+  --blue-g:    rgba(37,99,235,.14);
+  --blue-d:    rgba(37,99,235,.06);
+
+  --green:     #059669;
+  --green2:    #10b981;
+  --green-g:   rgba(5,150,105,.13);
+  --green-d:   rgba(5,150,105,.05);
+
+  --white:     #000000;
+  --text:      #0f172a;
+  --muted:     #475569;
+  --muted2:    #94a3b8;
+
+  --border:    rgba(15,23,42,.1);
+  --border2:   rgba(15,23,42,.18);
+  --grad:      linear-gradient(135deg, #2563eb, #10b981);
+}
+
+/* Ajustements structurels en mode clair */
+[data-theme="light"] body   { background: var(--bg); color: var(--text); }
+[data-theme="light"] nav    { background: rgba(240,244,251,.92) !important; border-bottom-color: var(--border); }
+[data-theme="light"] .marquee { background: var(--bg1); }
+[data-theme="light"] footer { background: var(--bg1); }
+[data-theme="light"] .pcard { background: var(--bg1); box-shadow: 0 24px 60px rgba(0,0,0,.12); }
+[data-theme="light"] .pphoto { background: linear-gradient(155deg,var(--bg2),var(--bg3)); }
+[data-theme="light"] .hgrid { background-image: linear-gradient(rgba(15,23,42,.04) 1px,transparent 1px), linear-gradient(90deg,rgba(15,23,42,.04) 1px,transparent 1px); }
+[data-theme="light"] .fbadge { background: rgba(240,244,251,.92); }
+[data-theme="light"] .skc,
+[data-theme="light"] .pjc,
+[data-theme="light"] .srvc,
+[data-theme="light"] .tc,
+[data-theme="light"] .ccard { background: var(--bg1); }
+[data-theme="light"] .astat,
+[data-theme="light"] .exp-body { background: transparent; }
+[data-theme="light"] #settings-panel { background: rgba(240,244,251,.97); }
+[data-theme="light"] .sw-btn { color: var(--muted); }
+[data-theme="light"] .about-quote { background: var(--bg2); }
+[data-theme="light"] .contact-grid-bg { background-image: linear-gradient(rgba(15,23,42,.025) 1px,transparent 1px), linear-gradient(90deg,rgba(15,23,42,.025) 1px,transparent 1px); }
+[data-theme="light"] .cta-strip { background: linear-gradient(135deg,var(--bg3),var(--bg2)); }
+
+/* Hblobs moins intenses en clair */
+[data-theme="light"] .hb1 { background: radial-gradient(ellipse 40% 50% at 50% 50%,rgba(37,99,235,.12),transparent); }
+[data-theme="light"] .hb2 { background: radial-gradient(ellipse 35% 45% at 50% 50%,rgba(16,185,129,.09),transparent); }
+[data-theme="light"] .hb3 { background: radial-gradient(ellipse 45% 40% at 50% 50%,rgba(37,99,235,.07),transparent); }
+
+
+/* ═══════════════════════════════════════════════════════════
+   THÈME DARK — renforce le thème original (déjà sombre)
+   On applique simplement les valeurs par défaut + ajustements
+   ═══════════════════════════════════════════════════════════ */
+[data-theme="dark"] {
+  --bg:        #04080f;
+  --bg1:       #070d19;
+  --bg2:       #0a1324;
+  --bg3:       #0f1d35;
+  --white:     #ffffff;
+  --text:      #e2e8f4;
+  --muted:     #5e7094;
+  --muted2:    #2d3f5c;
+  --border:    rgba(255,255,255,.065);
+  --border2:   rgba(255,255,255,.11);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   THÈME ORIGINAL — identique au thème dark (aucun changement visuel)
+   data-theme="original" est l'état par défaut, pas besoin d'override
+   ═══════════════════════════════════════════════════════════ */
