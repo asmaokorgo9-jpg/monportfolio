@@ -260,8 +260,8 @@ function applyLang(lang) {
 
   /* Mettre à jour le <title> de la page */
   const titles = {
-    fr: 'ILBOUDO Sibri Pendwendé Toussaint · Développeur Web',
-    en: 'ILBOUDO Sibri Pendwendé Toussaint · Web Developer',
+    fr: 'KORGO Asmao · Développeuse Web',
+    en: 'KORGO Asmao · Web Developer',
   };
   document.title = titles[lang] || document.title;
 }
